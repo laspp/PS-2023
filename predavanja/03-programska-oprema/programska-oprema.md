@@ -139,9 +139,6 @@ Niti izvajajo neodvisne programske tokove, zato ima vsaka svoje:
         - so blokirane in čakajo v bazenu niti
         - po potrebi jih programski razvrščevalnik (knjižnica) zbudi
         - lahko vsako nalogo izvaja svoja nit, ali pa imamo več nalog kot niti
-
-<img src="slike/naloge-niti-procesorji.png" width="75%">
-    
     - program ustvarja naloge, ki jih oddaja v bazen nalog
     - naloge se izvajajo takrat, ko so niti na voljo 
     - naloge dodeljuje nitim programski razvrščevalnik (knjižnica, jezik)
@@ -153,6 +150,9 @@ Niti izvajajo neodvisne programske tokove, zato ima vsaka svoje:
     - v izvajanju
 
 - programski razvrščevalnik 
+
+    <img src="slike/naloge-niti-procesorji.png" width="75%">
+
     - razvrščevalnik $M: N$, razvršča $M$ nalog na $N$ niti ($M > N$, $N$ je običajno enak številu procesorjev)
     - nalogo da na čakanje takoj, ko je njeno izvajanje blokirano, in zažene drugo nalogo iz bazena
     - koncept je podoben kot pri nitih, vendar samo ko pride do blokade, ne pa tudi zaradi porazdeljevanja procesorskih virov med naloge
