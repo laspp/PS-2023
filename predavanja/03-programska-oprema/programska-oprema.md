@@ -106,7 +106,7 @@ Niti izvajajo neodvisne programske tokove, zato ima vsaka svoje:
         - se bo lahko izvajal sočasno na enem procesorskem jedru ali
         - vzporedno na več procesorskih jedrih hkrati
 
-<img src="slike/socasno-zaporedno-vzporedno.png" width="75%"/>
+    <img src="slike/socasno-zaporedno-vzporedno.png" width="75%"/>
 
 
 ### Življenjski cikel niti
@@ -132,9 +132,10 @@ Niti izvajajo neodvisne programske tokove, zato ima vsaka svoje:
 ## Naloge: ko niti niso dovolj
 
 - mnoga programska orodja delajo neposredno z nitmi (pThreads, OpenMP)
+
 - za učinkovito vzporedno izvajanje določenih tipov programov (na primer rekurzivnih) potrebujemo dodaten nivo abstrakcije (cilk, TBB, go)
-- model nalog
-    
+
+- model nalog    
     - program ustvari niti
         - so blokirane in čakajo v bazenu niti
         - po potrebi jih programski razvrščevalnik (knjižnica) zbudi
@@ -145,13 +146,14 @@ Niti izvajajo neodvisne programske tokove, zato ima vsaka svoje:
         - naloge se lahko izvajajo v drugačnem vrstnem redu, kot so bile oddane v bazen
 
 - stanja nalog:
+
     - čakajoča
     - pripravljena za izvajanje
     - v izvajanju
 
-- programski razvrščevalnik 
+<img src="slike/naloga-zivljenski-cikel.png" width="40%"/>
 
-    <img src="slike/naloge-niti-procesorji.png" width="75%">
+- programski razvrščevalnik:
 
     - razvrščevalnik $M: N$, razvršča $M$ nalog na $N$ niti ($M > N$, $N$ je običajno enak številu procesorjev)
     - nalogo da na čakanje takoj, ko je njeno izvajanje blokirano, in zažene drugo nalogo iz bazena
@@ -160,6 +162,8 @@ Niti izvajajo neodvisne programske tokove, zato ima vsaka svoje:
     - preklapljanje med nitmi ~12k ukazov, preklapljanje med nalogami ~2,4k ukazov
     - precej kompleksen: globalni seznam nalog, seznam nalog za vsako nit, LIFO in FIFO, kraja 
     - vir: [William Kennedy: Scheduling In Go](https://www.ardanlabs.com/blog/2018/08/scheduling-in-go-part1.html)
+
+<img src="slike/naloge-niti-procesorji.png" width="75%"/>
 
 - prednosti nalog: 
     - znebimo se visokih stroškov ob ustvarjanju, zaključevanju, preklapljanju niti
