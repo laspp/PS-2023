@@ -151,9 +151,10 @@ Niti izvajajo neodvisne programske tokove, zato ima vsaka svoje:
 
 - programski razvrščevalnik 
 
-    <img src="slike/naloge-niti-procesorji.png" width="75%">
-
     - razvrščevalnik $M: N$, razvršča $M$ nalog na $N$ niti ($M > N$, $N$ je običajno enak številu procesorjev)
+
+        <img src="slike/naloge-niti-procesorji.png" width="75%">
+
     - nalogo da na čakanje takoj, ko je njeno izvajanje blokirano, in zažene drugo nalogo iz bazena
     - koncept je podoben kot pri nitih, vendar samo ko pride do blokade, ne pa tudi zaradi porazdeljevanja procesorskih virov med naloge
     - s tem, ko neprestano preklaplja med blokiranimi in neblokiranimi nalogami, skrbi, da niti nikoli ne čakajo in procesor nima razloga za zamenjavo z drugimi nitmi
