@@ -39,4 +39,5 @@ application programming, Elsevier, 2016
 ## Ocena
 
 - 50 % iz petih domačih nalog
+  - pogoj za opravljene vaje so narejene vsaj 4 naloge in zbranih vsaj 10 točk. Narejena naloga pomeni, da je ocenjena z več kot 0 točkami. Pri vsaki nalogi dobite največ 5 točk. Naloge za oceno zagovarjate na vajah.
 - 50 % ustni izpit

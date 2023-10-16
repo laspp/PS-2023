@@ -32,7 +32,7 @@ Vodič za delo na gruči in uporamo vmesne programske upreme [SLURM](https://slu
 ```srun --reservation=psistemi <ime_programa>```
 
 ## Naloga
-
+*Ne šteje kot ena izmed petih nalog pri predmetu!*
 1. Spremeni privzeto uporabniško geslo na [https://fido.sling.si/](https://fido.sling.si/).
 2. Ustvari in dodaj ključ SSH v uporabniški profil na [https://fido.sling.si/](https://fido.sling.si/). Navodila najdete na [povezavi](https://doc.sling.si/workshops/supercomputing-essentials/02-slurm/06-ssh-key/).
 3. Preko SSH se povežite na vstopno vozlišče Arnes: `hpc-login.arnes.si`.
