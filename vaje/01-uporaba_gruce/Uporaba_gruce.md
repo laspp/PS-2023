@@ -29,7 +29,26 @@ Pri delo z gručo lahko uporabljate poljubno orodje za oddaljen dostop (ukazna l
 
 Vodič za delo na gruči in uporamo vmesne programske upreme [SLURM](https://slurm.schedmd.com/) za upravljanje s posli in nalogami najdete [tukaj](https://doc.sling.si/workshops/supercomputing-essentials/01-intro/01-course/). Vsem udeležencem predmeta priporočam, da se prebijejo čez tečaj objavljen na prejšnji povezavi. Pri našem delu z gručo bomo uporabljali rezervacijo `psistemi`, tako da ne bomo imeli težav s čakanjem, da se naši posli izvedejo. V rezervaciji imamo na voljo nekaj računskih vozlišč, ki jih ostali uporabniki gruče ne morejo zasesti. Rezervacijo pri zaganjanju posla uporabite na naslednji način:
 
-```srun --reservation=psistemi <ime_programa>```
+```$ srun --reservation=psistemi <ime_programa>```
+
+Posle lahko zaganjate tudi s pomočjo opisne skripte bash v kateri navedete zahteve posla. Primer skripte:
+```Bash
+#!/bin/bash
+#SBATCH --job-name=my_job_name
+#SBATCH --partition=all
+#SBATCH --reservation=psistemi
+#SBATCH --ntasks=4
+#SBATCH --nodes=1
+#SBATCH --mem-per-cpu=100MB
+#SBATCH --output=my_job.out
+#SBATCH --time=00:01:00
+
+srun hostname
+```
+Zgornjo skripto shranite v datoteko končnico `.sh`, npr.: `posel.sh` in jo zaženete z ukazom:
+```
+$ sbatch posel.sh
+```
 
 ## Naloga
 *Ne šteje kot ena izmed petih nalog pri predmetu!*
