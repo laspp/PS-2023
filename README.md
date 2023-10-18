@@ -14,8 +14,9 @@
 
 
 - Teden 03:
-   - predavanja: <!-- [SLURM](predavanja/04-slurm/slurm.md), [sočasnost v jeziku go](predavanja/05-go/go.md) in [gorutine](predavanja/06-gorutine/gorutine.md)-->
+   - predavanja: [SLURM](predavanja/04-slurm/slurm.md), [jezik go](predavanja/05-go/go.md)
     - vaje: [SLURM](vaje/01-uporaba_gruce/Uporaba_gruce.md)
+
 <!-- 
 - Teden 04:
     - predavanja: [sinhronizacija](predavanja/07-sinhronizacija/sinhronizacija.md)
