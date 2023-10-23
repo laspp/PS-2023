@@ -275,23 +275,23 @@ func main() {
 }
 ```
 [strukture.go](koda/strukture.go)
-# Polja in rezine
-V programskem jeziku **go** poznamo dva tipa polj: statična polja (arrays) in rezine (slices), ki jih uporabljamo za ustvarjanje polj spremenljive dolžine. Spremenljivko tipa polje ustvarimo na naslednji način:
+# Tabele in rezine
+V programskem jeziku **go** poznamo dva tipa tabel: statične tabele (arrays) in rezine (slices), ki jih uporabljamo za ustvarjanje tabel spremenljive dolžine. Spremenljivko tipa tabela ustvarimo na naslednji način:
 ```Go
-var [n]podatkovniTip
+var T [n]podatkovniTip
 ```
-S tem ustvarimo novo polje, ki vsebuje `n` elementov tipa `podatkovniTip`. Dolžine polja ne moremo spreminjati med izvajanjem.
+S tem ustvarimo novo tabelo `T`, ki vsebuje `n` elementov tipa `podatkovniTip`. Dolžine tabele ne moremo spreminjati med izvajanjem.
 ```Go
 /*
-Program polja prikazuje kako definiramo, inicializiramo in dostopamo do polj v programskem jeziku go
+Program tabele prikazuje kako definiramo, inicializiramo in dostopamo do tabel v programskem jeziku go
 */
 package main
 
 import "fmt"
 
 func main() {
-	// Definicija in izpis polja z dvema elementoma
-	// Polje ima vedno definirano velikost
+	// Definicija in izpis tabele z dvema elementoma
+	// Tabela ima vedno definirano velikost
 	var a [2]string
 	a[0] = "Porazdeljeni"
 	a[1] = "Sistemi"
@@ -302,20 +302,20 @@ func main() {
 	fibonacci := [6]int{1, 1, 2, 3, 5, 8}
 	fmt.Println(fibonacci)
 
-	// Večdimenzionalna polja
+	// Večdimenzionalne tabele
 	magic := [3][3]int{{2, 7, 6}, {9, 5, 1}, {4, 3, 8}}
 	fmt.Println(magic)
 }
 ```
-[polja.go](koda/polja.go)
+[tabele.go](koda/tabele.go)
 
-Uporaba rezin je v **go**-ju bolj pogosta kot uporaba polj. Rezino definiramo podobno kot polje, le da ne navedemo velikosti polja.
+Uporaba rezin je v **go**-ju bolj pogosta kot uporaba tabel. Rezino definiramo podobno kot tabelo, le da ne navedemo velikosti.
 ```Go
 var []podatkovniTip
 ```
 Neinicializirana rezina je dolga 0 elementov in je enaka vrednosti `nil`.
 
-Rezino lahko inicializiramo na več načinov. Lahko jo uporabimo kot referenco v obstoječe statično polje, ali pa jo ustvarimo s pomočjo vgrajene funkcije `make`.
+Rezino lahko inicializiramo na več načinov. Lahko jo uporabimo kot referenco v obstoječo statično tabelo, ali pa jo ustvarimo s pomočjo vgrajene funkcije `make`.
 ```Go
 /*
 Program rezine prikazuje kako definiramo, inicializiramo in dostopamo do rezin v programskem jeziku go
@@ -326,23 +326,23 @@ import "fmt"
 
 func main() {
 
-	// fibonaci je polje (array)
+	// fibonaci je tabela (array)
 	fibonacci := [6]int{1, 1, 2, 3, 5, 8}
-	// s1 je rezina (slice), ki služi kot referenca na del polja fibonacii
-	// z notacijo [:] povemo, kateri del polja sestavlja rezino
-	// nismo ustvarili kopije podatkov ampak samo referenco na elemente polja
+	// s1 je rezina (slice), ki služi kot referenca na del tabele fibonacii
+	// z notacijo [:] povemo, kateri del tabele sestavlja rezino
+	// nismo ustvarili kopije podatkov ampak samo referenco na elemente tabele
 	var s1 []int = fibonacci[0:3]
-	// Do elementov v rezini dostopamo na enak način kot do elementov polja
+	// Do elementov v rezini dostopamo na enak način kot do elementov tabele
 	fmt.Printf("%T, %d, %d, %d\n", s1, s1[0], s1[1], s1[2])
 
-	// Zgornjo ali spoodnjo ali obe meji lahko izpustimo, če ustvarjamo rezino, ki vsebuje vse elemente polja
+	// Zgornjo ali spoodnjo ali obe meji lahko izpustimo, če ustvarjamo rezino, ki vsebuje vse elemente tabele
 	var s2 []int = fibonacci[:]
 	s2[0] = 0
 	fmt.Println(s2)
 	fmt.Println(fibonacci)
 
 	// Rezino lahko ustvarimo tudi neposredno
-	// hkrati se ustvari polje s podatki in rezina, ki kaže na polje
+	// hkrati se ustvari tabela s podatki in rezina, ki kaže na tabelo
 	letters := []string{"a", "b", "c", "d"}
 	fmt.Println(letters)
 
@@ -465,7 +465,7 @@ func main() {
 	}
 
 	// Bolj elegantna oblika zanke for z uporabo range
-	// Uporabno za sprehajanje po poljih, rezinah, nizih, slovarjih
+	// Uporabno za sprehajanje po tabelah, rezinah, nizih, slovarjih
 	fibonacci := [6]int{1, 1, 2, 3, 5, 8}
 	for i, v := range fibonacci {
 		fmt.Println(i, v)
@@ -495,8 +495,8 @@ func main() {
 }
 ```
 [zanke.go](koda/zanke.go)
-# Stavka if-else in switch
-Vejtivena stavka `if-else` in `switch` delujeta podobno kot smo navajeni iz drugih programskih jezikov. Stavek  `if-else` ima naslednjo sintakso:
+# Izbirni stavki
+Izbirna stavka `if-else` in `switch` delujeta podobno kot smo navajeni iz drugih programskih jezikov. Stavek  `if-else` ima naslednjo sintakso:
 ```Go
 if stavek; pogoj1 {
 	 // izpolnjen pogoj1

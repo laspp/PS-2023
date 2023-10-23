@@ -26,7 +26,7 @@ func main() {
 	}
 
 	// Bolj elegantna oblika zanke for z uporabo range
-	// Uporabno za sprehajanje po poljih, rezinah, nizih, slovarjih
+	// Uporabno za sprehajanje po tabelah, rezinah, nizih, slovarjih
 	fibonacci := [6]int{1, 1, 2, 3, 5, 8}
 	for i, v := range fibonacci {
 		fmt.Println(i, v)

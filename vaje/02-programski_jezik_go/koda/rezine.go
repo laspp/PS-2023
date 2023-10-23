@@ -7,13 +7,13 @@ import "fmt"
 
 func main() {
 
-	// fibonaci je polje (array)
+	// fibonaci je tabela (array)
 	fibonacci := [6]int{1, 1, 2, 3, 5, 8}
-	// s1 je rezina (slice), ki služi kot referenca na del polja fibonacii
-	// z notacijo [:] povemo, kateri del polja sestavlja rezino
-	// nismo ustvarili kopije podatkov ampak samo referenco na elemente polja
+	// s1 je rezina (slice), ki služi kot referenca na del tabele fibonacii
+	// z notacijo [:] povemo, kateri del tabele sestavlja rezino
+	// nismo ustvarili kopije podatkov ampak samo referenco na elemente tabele
 	var s1 []int = fibonacci[0:3]
-	// Do elementov v rezini dostopamo na enak način kot do elementov polja
+	// Do elementov v rezini dostopamo na enak način kot do elementov tabele
 	fmt.Printf("%T, %d, %d, %d\n", s1, s1[0], s1[1], s1[2])
 
 	// Zgornjo ali spoodnjo ali obe meji lahko izpustimo, če ustvarjamo rezino, ki vsebuje vse elemente polja
@@ -23,7 +23,7 @@ func main() {
 	fmt.Println(fibonacci)
 
 	// Rezino lahko ustvarimo tudi neposredno
-	// hkrati se ustvari polje s podatki in rezina, ki kaže na polje
+	// hkrati se ustvari tabela s podatki in rezina, ki kaže na tabelo
 	letters := []string{"a", "b", "c", "d"}
 	fmt.Println(letters)
 
