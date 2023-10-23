@@ -17,8 +17,8 @@
    - predavanja: [SLURM](predavanja/04-slurm/slurm.md), [jezik go](predavanja/05-go/go.md)
     - vaje: [SLURM](vaje/01-uporaba_gruce/Uporaba_gruce.md)
 
-<!-- 
+
 - Teden 04:
-    - predavanja: [sinhronizacija](predavanja/07-sinhronizacija/sinhronizacija.md)
-    - vaje: 
--->
+    - predavanja: <!-- [sinhronizacija](predavanja/07-sinhronizacija/sinhronizacija.md) -->
+    - vaje: [jezik go](vaje/02-programski_jezik_go/Uvod_v_go.md)
+
