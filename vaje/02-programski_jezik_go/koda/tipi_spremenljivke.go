@@ -33,5 +33,5 @@ func main() {
 	// Med podatkovnimi tipi lahko tudi pretvarjamo
 	// Za razliko od programskega jezika C, je v go vedno potrebna eksplicitna konverzija pri priredbah med različnimi podatkovnimi tipi
 	fx := float64(x)
-	fmt.Printf("%T, %.1f", fx, fx)
+	fmt.Printf("%T, %.1f\n", fx, fx)
 }
