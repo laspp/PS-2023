@@ -19,6 +19,6 @@
 
 
 - Teden 04:
-    - predavanja: <!-- [sinhronizacija](predavanja/07-sinhronizacija/sinhronizacija.md) -->
+    - predavanja: [sinhronizacija](predavanja/06-sinhronizacija/sinhronizacija.md)
     - vaje: [jezik go](vaje/02-programski_jezik_go/Uvod_v_go.md)
 
