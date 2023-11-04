@@ -171,8 +171,6 @@
     }
     ```
 
-<!--
-
 - kanal ima definirano kapaciteto; privzeta kapaciteta kanala je 0
 
     - definiciji `dataStream = make(chan int)` in `dataStream = make(chan int, 0)` sta enakovredni
@@ -269,5 +267,3 @@
     - poslušalci (`listener`) se zaženejo in čakajo na sporočilo na kanalu
     - ko razglaševalec(`speaker`) izpiše novico, zapre kanal ne da bi karkoli vanj poslal
     - ko je kanal zaprt, poslušalci iz kanala nemudoma preberejo privzeto vrednost in nadaljujejo
-
--->
