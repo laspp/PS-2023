@@ -22,3 +22,6 @@
     - predavanja: [sinhronizacija](predavanja/06-sinhronizacija/sinhronizacija.md)
     - vaje: [jezik go](vaje/02-programski_jezik_go/Uvod_v_go.md)
 
+- Teden 05:
+    - predavanja: <!--[sinhronizacija](predavanja/06-sinhronizacija/sinhronizacija.md)-->
+    - vaje: [sočasno programiranje v go (1. domača naloga)](vaje/03-gorutine/Socasno_programiranje_go.md)
