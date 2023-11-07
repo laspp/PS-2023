@@ -2,7 +2,7 @@
 
 **Rok za oddajo: 19. 11. 2023**
 
-Znana zbirka stripov [xkcd](https://xkcd.com/) omogoča programski dostop do informacij o posameznem stripu. Podatki so na voljo v formatu [JSON](https://www.json.org/). Podatki o najnovejšem stripu so na voljo na naslovu [https://xkcd.com/info.0.json](https://xkcd.com/info.0.json), do starejših pa dostopamo s pomočjo zaporedne številke. Na primer, strip številka 1 dobimo na naslovu [https://xkcd.com/1/info.0.json](https://xkcd.com/1/info.0.json). Trenutno je objavljenih 2850 stripov.
+Znana zbirka stripov [xkcd](https://xkcd.com/) omogoča programski dostop do informacij o posameznem stripu. Podatki so na voljo v formatu [JSON](https://www.json.org/). Podatki o najnovejšem stripu so na voljo na naslovu [https://xkcd.com/info.0.json](https://xkcd.com/info.0.json), do starejših pa dostopamo s pomočjo zaporedne številke. Na primer, strip številka 1 dobimo na naslovu [https://xkcd.com/1/info.0.json](https://xkcd.com/1/info.0.json). Trenutno je objavljenih 2851 stripov.
 
 ![xkcd API](https://imgs.xkcd.com/comics/api.png)
 
