@@ -36,7 +36,7 @@ Nekatera polja se ne uporabljajo in so vedno prazna, npr. *news* in *link*. Prim
 }
 ```
 
-V repozitoriju na povezavi [github.com/laspp/PS-2023/vaje/naloga-1/koda/xkcd](https://github.com/laspp/PS-2023/tree/main/vaje/naloga-1/koda/xkcd)] najdete modul xkcd, ki vsebuje funkcijo: 
+V repozitoriju na povezavi [github.com/laspp/PS-2023/vaje/naloga-1/koda/xkcd](https://github.com/laspp/PS-2023/tree/main/vaje/naloga-1/koda/xkcd) najdete modul xkcd, ki vsebuje funkcijo: 
 ```Go
 func FetchComic(id int) (Comic, error)
 ```
@@ -91,6 +91,6 @@ sits, 1
 part, 1
 ```
 
-**Na koncu besede sortirajte glede na frekvenco in izpišite 15 najpogostejših besed in njihovih frekvenc za celoten nabor stripov**. Pomagajte si s paketom [`sort`](https://pkg.go.dev/sort).
+**Na koncu besede sortirajte glede na frekvenco in izpišite 15 najpogostejših besed in njihovih frekvenc za celoten nabor stripov**. Pomagajte si s paketom [`sort`](https://pkg.go.dev/sort). Nalogo do roka oddajte preko [spletne učilnice](https://ucilnica.fri.uni-lj.si/mod/assign/view.php?id=37715).
 
 
