@@ -7,7 +7,7 @@
 - delovanje
     - gorutina najprej zaklene ključavnico
     - ko pride do funkcije `Wait`, ključavnico sprosti in čaka na signal za nadaljevanje; pri tem se postavi na zadnje mesto v vrsti zaustavljenih gorutin
-    - ko pogona spremenljivka prejme signal, se gorutina zbudi, zaklene ključavnico in nadaljuje
+    - ko pogojna spremenljivka prejme signal, se gorutina zbudi, zaklene ključavnico in nadaljuje
         - s `Signal` zbudimo samo eno spečo nit
         - z `Broadcast` zbudimo vse speče niti
     - na koncu mora gorutina ključavnico sprostiti
