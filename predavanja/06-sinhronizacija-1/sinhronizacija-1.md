@@ -140,3 +140,86 @@
     - ker je kanal blokirajoč, bo glavna gorutina čakala toliko časa, da zaključijo vse dodatne gorutine
     - ne potrebujemo nobenih drugih sinhronizacijskih elementov
 
+### Hkratna uporaba več ključavnic in smrtni objem
+
+<img src="slike/filozofi.png" width="40%" />
+
+- Primer: 5 filozofov pri večerji 
+
+    - za okroglo mizo zboruje pet filozofov, ki v več ciklih razmišljajo, so lačni, jejo, potem spet razmišljajo, ...
+    - jedo špagete, iz skupnega krožnika na sredini mize
+    - na voljo imajo samo 5 vilic
+    - vsak filozof pri jedi potrebuje par vilic; uporabi lahko le tiste na svoji levi in svoji desni
+
+        - vilice so omejen vir, ene lahko uporablja samo en filozof na enkrat, zato jih predstavimo s ključavnicami
+        - vsak filozof mora dobiti par vilic
+
+    - [filozofi-1](koda/filozofi-1.go)
+
+        - nepravilna rešitev: nobenega nadzora nad jemanjem vilic
+
+    - [filozofi-2](koda/filozofi-2.go)
+
+        - vilice predstavimo s ključavnicami, 
+        - nepravilna rešitev: pride do **smrtnega objema** (*angl.* deadlock)
+
+    - [filozofi-3](koda/filozofi-3.go)
+    
+        - posebna ključavnica za jemanje vilic
+        - smrtnega objema ni več, samo en filozof lahko jemlje naenkrat
+
+    - [filozofi-4](koda/filozofi-4.go)
+
+        - delujoča rešitev
+        - če filozof ne uspe dobiti drugih vilic, odloži tudi prve in nato še enkrat poskusi
+
+    - [filozofi-5](koda/filozofi-5.go)
+
+        - delujoča rešitev
+        - vilice vedno pobirajo v enakem vrstnem redu - vedno najprej vzamejo vilice z nižjim indeksom
+
+    - [filozofi-6](koda/filozofi-6.go)
+
+        - delujoča rešitev s kanali
+        - vilice vedno pobirajo v enakem vrstnem redu - vedno najprej vzamejo vilice z nižjim indeksom
+
+- do **smrtnega objema** (*angl.* deadlock) pride, če so izpolnjeni vsi Coffmanovi pogoji:
+    - viri (kritični odseki) imajo omejeno število lastnikov (gorutin)
+    - lastnik lahko pridobi en vir in čaka na naslednji vir
+    - lastnik ima izključno pravico do sproščanja vira
+    - obstaja krožna odvisnost med lastniki -- prvi čaka drugega, drugi tretjega, ..., zadnji spet prvega
+
+    - primer smrtnega objema s parom ključavnic
+
+        ```go
+        // gorutina 1           // gorutina 2
+        lock1.Lock()           lock2.Lock()
+        lock2.Lock()           lock1.Lock()
+        ...                     ...
+        lock1.Unlock()         lock1.Unlock()
+        lock2.Unlock()         lock2.Unlock()
+        ```
+
+- preprečevanje smrtnega objema:
+
+    - hierarhija ključavnic (statično)
+        - definiramo hierarhijo ključavnic - določimo vrstni red, jih (navidezno) oštevilčimo
+        - ključavnice zaklepamo vedno v definiranem vrstnem redu - posamezna gorutina naj nikoli ne skuša zakleniti ključavnice $n$, če ima zaklenjeno ključavnico $m$, pri čemer je $n < m$
+
+    - pogojno zaklepanje (dinamično)
+        - če zaradi narave problema ne moremo uporabiti hierarhije ključavnic
+        - zaklenemo prvo ključavnico, potem poskusimo zakleniti še vse ostale
+        - če katere od ključavnic ne uspemo zakleniti, sprostimo vse, nato ponovno poskusimo od začetka, z zaklepanjem prve ključavnice
+
+### Tipi zastojev v programu
+
+- smrtni objem (glej prejšnji razdelek)
+- živi objem (*angl.* livelock)
+    - dve gorutini se ne ustavita, ampak ves čas izvajata program, vendar se ta ne premakne v naslednje stanje
+    - gorutini neprestano ponavljata isto operacijo kot odgovor na spremembe v drugi gorutini in pri tem ne počneta nič uporabnega
+    - primer: dve osebi se približujeta v ozkem hodniku, da se ne zaletita se obe umakneta na isto stran, potem se obe umakneta na drugo stran, ..., ves čas nekaj počneta, vendar ne znata razrešiti konflikta
+- stradanje
+    - o stradanju govorimo, kadar gorutina ne more dobiti vseh virov, ki jih potrebuje za delo
+    - običajno ene gorutine bolj intenzivno zahtevajo vire in ostalim onemogočajo, da bi delo opravile učinkovito
+    - [stradanje.go](koda/stradanje.go) 
+        - dve gorutini z enako količino dela, pohlepna gorutina bo kritični odsek zaklenila enkrat za dlje časa, prijazna gorutina pa večkrat, vsakič za krajši čas
