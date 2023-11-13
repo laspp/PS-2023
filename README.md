@@ -25,3 +25,7 @@
 - Teden 05:
     - predavanja: <!--[sinhronizacija](predavanja/06-sinhronizacija/sinhronizacija.md)-->
     - vaje: [sočasno programiranje v go (1. domača naloga)](vaje/03-gorutine/Socasno_programiranje_go.md)
+
+- Teden 06:
+    - predavanja:
+    - vaje:  [metode in vmesniki](vaje/04-metode-vmesniki/Metode-vmesniki.md)
