@@ -45,3 +45,43 @@
         - gorutina lahko pregrado zapusti šele, ko je lokalna zastavica enaka globalni
         - podobna rešitev kot zgoraj
         - jezik go zazna tvegana stanja
+
+    - [pregrada-5.go](koda/pregrada-5.go)
+        - ustvarimo pogojno spremenljivko in jo povežemo s ključavnico
+        - vse gorutine, razen zadnje, damo na čakanje
+        - ko preštejemo zadnjo gorutino, postavimo števec na 0 in zbudimo ostale gorutine
+
+    - [pregrada-6.go](koda/pregrada-6.go)
+        - podobna rešitev kot [pregrada-3.go](koda/pregrada-3.go)
+        - rešitev s kanali je bolj elegantna: gorutina je blokirana medtem ko čaka, da se v kanalu pojavi podatek
+        - dva kanala, z enim nadziramo prihajanje niti k pregradi (vrata 0), z drugim odhajanje niti od pregrade (vrata 1)
+        - kanala sta tipa `struct{}`, s čimer poudarimo, da jih uporabljamo samo za sinhronizacijo
+
+- primer: proizvajalci in porabniki (*angl.* producer-consumer)
+    - izmenjava podatkov med gorutinami preko medpomnilnika
+    - proizvajalci pošiljajo podatke v medpomnilnik
+    - porabniki podatke pobirajo iz medpomnilnika
+    - proizvajalec ne sme dodajati podatkov v medpomnilnik, če je ta poln
+    - porabnik ne sme jemati podatkov iz medpomnilnika, če je ta prazen
+    - proizvajalci in porabniki morajo usklajeno dostopati do medpomnilnika
+
+        <img src="slike/proizvajalci-porabniki.png" width="80%">
+
+    - [proizvajalci-porabniki-1.go](koda/proizvajalci-porabniki-1.go) 
+        - ogrodje kode brez sinhronizacijskih elementov
+        - medpomnilnik za enega ali več podatkov s števcem števila podatkov in dvema indeksoma za krožno vrsto
+
+    - [proizvajalci-porabniki-2.go](koda/proizvajalci-porabniki-2.go) 
+        - za vzpostavitev komunikacije potrebujemo
+            - ključavnico
+            - dve pogojni spremenljivki za uspavanje in zbujanje proizvajalcev in porabnikov
+        - če je medpomnilnik poln, se proizvajalci ustavijo
+        - če je medpomnilnik prazen, porabniki čakajo
+        - proizvajalci signalizirajo porabnikom, da lahko poberejo podatke iz medpomnilnika
+        - porabniki signalizirajo proizvajalcem, da lahko proizvajajo
+        - s pogojnimi spremenljivkami in ključavnico v bistvu naredimo kanal
+
+    - [proizvajalci-porabniki-3.go](koda/proizvajalci-porabniki-3.go) 
+        - elegantna rešitev s kanalom
+        - komunikacija po kanalu brez pomnilnika je enakovredna prejšnji rešitvi z medpomnilnikom velikosti ena
+        - z zapiranjem kanala elegantno sporočimo porabnikom, da lahko zaključijo

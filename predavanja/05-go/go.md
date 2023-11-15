@@ -267,3 +267,36 @@
     - poslušalci (`listener`) se zaženejo in čakajo na sporočilo na kanalu
     - ko razglaševalec(`speaker`) izpiše novico, zapre kanal ne da bi karkoli vanj poslal
     - ko je kanal zaprt, poslušalci iz kanala nemudoma preberejo privzeto vrednost in nadaljujejo
+
+### Delo z več kanali
+
+- stavek `select` je posebnost jezika go, pomemben element pri obvladovanju sočastnosti
+- podobno, kot s kanali povezujemo gorutine, s stavkom `select` povezujemo kanale
+- sintaksa stavka `select` je zelo podobna sintaksi stavka `switch`
+    - stavka `select` in `switch` vključujeta množico vej, podanih s stavkom `case`
+    - za razliko od stavka `case`, kjer testiranje poteka zaporedno, se pri stavku `select` izvede samo tista veja, ki ima pogoje
+- stavek `select` čaka, da se na enem od kanalov, ki jih vključuje, nekaj zgodi
+    - do branja pride, če se pojavi vsebina ali se kanal zapre
+    - do pisanja pride, če je v kanalu prostor
+    - če ni pogojev za branje ali pisanje, stavek `select` blokira izvajanje
+- čakanje na dogodek tako ne poteka v neskončni zanki in zato le malenkostno obremenjuje procesor
+- s stavkom `select` čakamo na sporočila, poskrbimo za njihovo obdelavo, prekličemo gorutino zaradi napake ali izteka časa 
+- če ima pri stavku `select` več vej pogoje za izvajanje, izvajalni sistem jezika go naključno izbere in izvede enega od njih
+    - jezik go ne pozna vsebine naše programske kode, zato ne more vedeti katera veja ima prioriteto
+    - brez poznavanja ozadja je zato pri izvajanju najrazličnejših programov najbolj enostavno in sprejemljivo naključno izbiranje
+- če nobena veja v stavku `select` nima pogojev za izvajanje, se, če je napisana, izvede privzeta koda
+
+- [povezovanje-kanalov-1.go](koda/povezovanje-kanalov-1.go)
+    - gorutina `reader` posluša na dveh kanalih
+    - s stavkom `select` poskrbimo, da vsa sporočila obdelamo
+
+- [povezovanje-kanalov-2.go](koda/povezovanje-kanalov-2.go)
+    - če ne dobimo nobenega sporočila, gorutina čaka (blokira)
+    - s kanalom `time.After` iz paketa `time` lahko, poskrbimo, da se gorutina zaključi, ko prekorači dovoljeni čas izvajanja; če ob vsakem izvajanju stavka `select` ustvarimo nov kanal `time.After`, ga lahko uporabimo za detekcijo predolgotrajnega izvajanja
+
+- [povezovanje-kanalov-3.go](koda/povezovanje-kanalov-3.go)
+    - če se na kanalih nič ne dogaja, lahko izvedemo privzeto vejo
+    - privzeta veja se izvaja zelo pogosto, zato do prekoračitve časa izvajanja skoraj ne pride več
+
+- [povezovanje-kanalov-4.go](koda/povezovanje-kanalov-4.go)
+    - dodamo še kanal, preko katerega glavna gorutina sporoči gorutini `reader` naj zaključi izvajanje

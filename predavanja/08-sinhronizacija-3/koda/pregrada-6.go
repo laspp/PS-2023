@@ -1,9 +1,9 @@
 // Pregrada
-// ključavnica, princip dvojih vrat:
-// 		faza (phase) = 0: prehajanje čez prva vrata
-//		faza 		 = 1: prehajanje čez druga vrata
-//		g				: število gorutin za prvimi in pred drugimi vrati
-// tvegano stanje zaradi hkratnega branja in pisanja (vrtenje v neskončni zanki)
+// dva kanala, princip dvojih vrat
+// 		najprej počakamo, da vse gorutine pridejo čez prva vrata (arrived)
+//      nato počakamo, da vse gorutine pridejo čez druga vrata (left)
+// 		kanala imata kapaciteto 1, da zadnja gorutina lahko sprosti sama sebe
+//		kanala sta tipa struct{}, s čimer poudarimo, da jih uporabljamo za sihronizacijo
 
 package main
 
@@ -19,9 +19,11 @@ var wg sync.WaitGroup
 var goroutines int
 var g int = 0
 var lock sync.Mutex
-var phase int = 0
+var arrived = make(chan struct{}, 1)
+var left = make(chan struct{}, 1)
 
 func barrier(id int, printouts int) {
+
 	defer wg.Done()
 
 	for i := 0; i < printouts; i++ {
@@ -33,31 +35,25 @@ func barrier(id int, printouts int) {
 		// pregrada - začetek
 		// vrata 0
 		lock.Lock()
-		if phase == 1 { // ko gorutine prvič prihajajo do pregrade, je phase == 0
-			if g > 0 {
-				lock.Unlock()
-				for phase == 1 {
-				}
-				lock.Lock()
-			} else {
-				phase = 0 // prehajanje čez vrata 0 se začne, ko zadnja gorutina zapusti vrata 1
+		g++
+		if g == goroutines {
+			for i := 0; i < goroutines; i++ {
+				arrived <- struct{}{}
 			}
 		}
-		g++
 		lock.Unlock()
+		<-arrived
 
 		// vrata 1
 		lock.Lock()
-		if g < goroutines {
-			lock.Unlock()
-			for phase == 0 {
-			}
-			lock.Lock()
-		} else {
-			phase = 1 // prehajanje čez vrata 1 se začne, ko zadnja gorutina zapusti vrata 0
-		}
 		g--
+		if g == 0 {
+			for i := 0; i < goroutines; i++ {
+				left <- struct{}{}
+			}
+		}
 		lock.Unlock()
+		<-left
 		// pregrada - konec
 	}
 }
@@ -71,7 +67,7 @@ func main() {
 	goroutines = *gPtr
 
 	// zaženemo gorutine
-	wg.Add(goroutines)
+	wg.Add(*gPtr)
 	for i := 0; i < goroutines; i++ {
 		go barrier(i, *pPtr)
 	}
