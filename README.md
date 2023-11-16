@@ -32,7 +32,7 @@
 
 - Teden 06:
     - predavanja: [varna sočasnost](predavanja/09-varna-socasnost/varna-socasnost.md)
-    - vaje: 
+    - vaje:[metode in vmesniki](vaje/04-metode-vmesniki/Metode-vmesniki.md)
 
 <!--
 ### Sistemi s porazdeljenim pomnilnikom
