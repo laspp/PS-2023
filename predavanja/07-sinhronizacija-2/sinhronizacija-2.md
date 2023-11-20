@@ -20,6 +20,9 @@
     - mnogo gorutin želi hkrati brati skupno spremenljivko
 - če jo zaklenemo za pisanje, ne more vstopiti nobena druga gorutina
     - nobena gorutina ne sme dostopati do skupne spremenljivke medtem, ko ena gorutina vanjo piše
+- zaklepanje za pisanje ima prednost pred zaklepanjem za branje
+    - kritični odsek je zaklenjen za branje
+    - potem, ko ena od gorutin zahteva pisanje, ne more v kritični odsek vstopiti nobena druga gorutina z zahtevo za branje
 - primer uporabe: 
     - branje in pisanje datotek
     - metodi *get* in *set* pri dostopanju do lastnosti objektov
