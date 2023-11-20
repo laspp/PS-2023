@@ -34,15 +34,15 @@
     - predavanja: [varna sočasnost](predavanja/09-varna-socasnost/varna-socasnost.md)
     - vaje:[metode in vmesniki](vaje/04-metode-vmesniki/Metode-vmesniki.md)
 
-<!--
+
 ### Sistemi s porazdeljenim pomnilnikom
 
 - Teden 07:
-    - predavanja: posredovanje sporočil 
+  <!--  - predavanja: posredovanje sporočil 
         [osnove](predavanja/10-posredovanje-sporocil-1/posredovanje-sporocil-1.md), 
-        [programski vmesniki](predavanja/11-posredovanje-sporocil-2/posredovanje-sporocil-2.md)
-    - vaje: 
-
+        [programski vmesniki](predavanja/11-posredovanje-sporocil-2/posredovanje-sporocil-2.md)-->
+    - vaje: [omejevanje prepustnosti (2. domača naloga)](vaje/05-omejevanje-prepustnosti/Omejevane-prepustnosti.md)
+<!--
 - Teden 08:
     - predavanja: [modeli](predavanja/12-modeli-porazdeljenih-sistemov/modeli-porazdeljenih-sistemov.md), [merjenje časa](predavanja/13-cas-ura-dogodki/13-merjenje-casa.md)
 
