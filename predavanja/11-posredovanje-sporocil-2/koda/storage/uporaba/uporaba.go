@@ -29,7 +29,7 @@ func main() {
 	fmt.Println("done")
 
 	// preberemo en zapis
-	fmt.Print("2. Read  : ")
+	fmt.Print("2. Read 1: ")
 	replyMap = make(map[string]storage.Todo)
 	if err := store.Read(&lecturesUpdate, &replyMap); err != nil {
 		panic(err)
@@ -44,7 +44,7 @@ func main() {
 	fmt.Println("done")
 
 	// preberemo vse zapise
-	fmt.Print("4. Create: ")
+	fmt.Print("4. Read *: ")
 	replyMap = make(map[string]storage.Todo)
 	if err := store.Read(&readAll, &replyMap); err != nil {
 		panic(err)
@@ -66,7 +66,7 @@ func main() {
 	fmt.Println("done")
 
 	// preberemo vse zapise
-	fmt.Print("7. Create: ")
+	fmt.Print("7. Read *: ")
 	replyMap = make(map[string]storage.Todo)
 	if err := store.Read(&lecturesUpdate, &replyMap); err != nil {
 		panic(err)
