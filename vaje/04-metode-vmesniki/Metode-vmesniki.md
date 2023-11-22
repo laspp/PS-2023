@@ -75,7 +75,7 @@ Primarna razloga za vpeljavo in uporabo metod sta naslednja:
 
 - Metode z istim nad različnimi podatkovnimi tipi so dovoljene, medtem ko funkcije z istimi imeni niso dovoljene. Recimo, da bi imeli v zgornji kodi dodatno strukturo `Profesor`, ki bi vsebovala polji `name` in `surname`. Za to strukturo lahko ustvarimo metodo `displayNameSurname`, ki že obstaja. Funkcije z istim imenom pa ne bi mogli.
 
-Prejemnik metode je lahko vrednost ali kazalec. Če uporabimo vrednost kot v primeru metode `getYear()`, spremembe, ki jih ta metoda naredi ne bodo vidne zunaj metode. Če uporabimo kazalec na strukturo kot prejemnika pa se bodo spremembe ohranile tudi po zaključku metode. Primer take metode je `setYear(letnik int)`.
+Prejemnik metode je lahko vrednost ali kazalec. Če uporabimo vrednost kot v primeru metode `getYear()`, spremembe, ki jih ta metoda naredi ne bodo vidne zunaj metode. Če uporabimo kazalec na strukturo kot prejemnika pa se bodo spremembe ohranile tudi po zaključku metode. Primer take metode je `setYear(year int)`.
 
 ## Vmesniki
 
