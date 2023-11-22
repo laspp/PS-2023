@@ -73,9 +73,9 @@ Primarna razloga za vpeljavo in uporabo metod sta naslednja:
 
 - Go ni objektno usmerjen programski jezik in ne podpira razredov. Metode na tipih so torej način za dosego obnašanja, podobnega razredom. Metode omogočajo logično združevanje obnašanja, povezanega z določenim tipom, podobno kot razredi. V zgornjem primeru programa so vsa obnašanja, povezana s tipom `Student`, lahko združena z ustvarjanjem metod z uporabo sprejemnika tipa `Student`. 
 
-- Metode z istim nad različnimi podatkovnimi tipi so dovoljene, medtem ko funkcije z istimi imeni niso dovoljene. Recimo, da bi imeli v zgornji kodi dodatno strukturo `Profesor`, ki bi vsebovala polji `ime` in `priimek`. Za to strukturo lahko ustvarimo metodo `displayImePriimek`, ki že obstaja. Funkcije z istim imenom pa ne bi mogli.
+- Metode z istim nad različnimi podatkovnimi tipi so dovoljene, medtem ko funkcije z istimi imeni niso dovoljene. Recimo, da bi imeli v zgornji kodi dodatno strukturo `Profesor`, ki bi vsebovala polji `name` in `surname`. Za to strukturo lahko ustvarimo metodo `displayNameSurname`, ki že obstaja. Funkcije z istim imenom pa ne bi mogli.
 
-Prejemnik metode je lahko vrednost ali kazalec. Če uporabimo vrednost kot v primeru metode `getLetnik()`, spremembe, ki jih ta metoda naredi ne bodo vidne zunaj metode. Če uporabimo kazalec na strukturo kot prejemnika pa se bodo spremembe ohranile tudi po zaključku metode. Primer take metode je `setLetnik(letnik int)`.
+Prejemnik metode je lahko vrednost ali kazalec. Če uporabimo vrednost kot v primeru metode `getYear()`, spremembe, ki jih ta metoda naredi ne bodo vidne zunaj metode. Če uporabimo kazalec na strukturo kot prejemnika pa se bodo spremembe ohranile tudi po zaključku metode. Primer take metode je `setYear(letnik int)`.
 
 ## Vmesniki
 
