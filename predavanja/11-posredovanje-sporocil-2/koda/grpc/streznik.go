@@ -4,10 +4,10 @@
 package main
 
 import (
+	"api/grpc/protobufStorage"
+	"api/storage"
 	"context"
 	"fmt"
-	"main/grpc/protobufStorage"
-	"main/storage"
 	"net"
 	"os"
 

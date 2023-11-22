@@ -4,9 +4,9 @@
 package main
 
 import (
+	"api/storage"
 	"encoding/json"
 	"fmt"
-	"main/storage"
 	"net/http"
 	"os"
 	"strings"
