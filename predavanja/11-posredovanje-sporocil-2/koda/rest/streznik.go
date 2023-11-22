@@ -45,8 +45,9 @@ type HomeHandler struct{}
 // strežnik za osnovno spletno stran
 func (h *HomeHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	w.Write([]byte("RESTful CRUD server.\n\n"))
-	w.Write([]byte("Use " + r.URL.Path + "/todos/"))
-	w.Write([]byte("  key: string, value: {task: string, completed: bool}"))
+	w.Write([]byte("Usage:\n"))
+	w.Write([]byte("\thttp://" + (*r).Host + "/todos/\n"))
+	w.Write([]byte("\tREST method params: {task: <string>, completed: <bool>}\n"))
 }
 
 // rokovalnik za operacije CRUD (Create, Read, Update, Delete)
