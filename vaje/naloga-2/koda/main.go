@@ -4,7 +4,7 @@ package main
 
 import (
 	"fmt"
-	"pc/socialNetwork"
+	"indexService/socialNetwork"
 	"time"
 )
 

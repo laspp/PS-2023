@@ -41,8 +41,9 @@
         [programski vmesniki: gRPC](predavanja/11-posredovanje-sporocil-2/posredovanje-sporocil-2.md)
     - vaje: [omejevanje prepustnosti (2. domača naloga)](vaje/05-omejevanje-prepustnosti/Omejevane-prepustnosti.md)
 
-<!--
 - Teden 08:
-    - predavanja: [modeli](predavanja/12-modeli-porazdeljenih-sistemov/modeli-porazdeljenih-sistemov.md), [merjenje časa](predavanja/13-cas-ura-dogodki/13-merjenje-casa.md)
+<!--
+    - predavanja: [modeli](predavanja/12-modeli-porazdeljenih-sistemov/modeli-porazdeljenih-sistemov.md), [merjenje časa](predavanja/13-cas-ura-dogodki/13-merjenje-casa.md)-->
+    - vaje: [posredovanje sporočil](vaje/06-posredovanje-sporocil/Posredovanje-sporocil.md)
 
--->
+
