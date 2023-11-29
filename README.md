@@ -42,6 +42,5 @@
     - vaje: [omejevanje prepustnosti (2. domača naloga)](vaje/05-omejevanje-prepustnosti/Omejevane-prepustnosti.md)
 
 - Teden 08:
-    - predavanja: [programski vmesniki: RPC in REST](predavanja/11-posredovanje-sporocil-2/posredovanje-sporocil-2.md),   
-    [modeli](predavanja/12-modeli-porazdeljenih-sistemov/modeli-porazdeljenih-sistemov.md), [merjenje časa: fizične ure](predavanja/13-merjenje-casa/merjenje-casa.md)
+    - predavanja: [programski vmesniki: RPC in REST](predavanja/11-posredovanje-sporocil-2/posredovanje-sporocil-2.md), [modeli](predavanja/12-modeli-porazdeljenih-sistemov/modeli-porazdeljenih-sistemov.md), [merjenje časa: fizične ure](predavanja/13-merjenje-casa/merjenje-casa.md)
     - vaje: [posredovanje sporočil](vaje/06-posredovanje-sporocil/Posredovanje-sporocil.md)
