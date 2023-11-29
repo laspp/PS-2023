@@ -52,11 +52,13 @@
 - komunikacija je lahko 
     - sinhrona: odjemalec blokira, dokler strežnik ne odgovori; zaradi čakanja na odgovor je neučinkovita
     - asinhrona: odjemalec nadaljuje izvajanje kode, ko prispe odgovor se izvede povratni klic (*angl.* callback); v jeziku go to dosežemo z gorutinami, mnogi drugi jeziki (javascript, C#) poznajo ključne besede kot sta async/await
+- želimo si, da so metode idempotentne
+    - metoda je idempotentna, če se v shrambi nič ne spremeni, ko jo izvedemo dvakrat zapored
+    - do dveh zaporednih izvajanj lahko pride zaradi težav z dosegljivostjo strežnika (ob izpadu omrežja ali samega strežnika odjemalec ponovi zahtevo)
 - danes pogosto uporabljane tehnologije za komunikacijo med procesi
     - RPC (*angl.* remote procedure call): za interno komunikacijo med procesi, napisanimi v istem programskem jeziku
     - gRPC: postaja nov standard, uporablja HTTP/2, zaradi binarnega zapisovanja (Protocol Buffers) je hitrejši od HTTP/1.1
     - HTTP: najbolj uporabljana tehnologija za javne strežnike, podpirajo jo vsi brskalniki preko kode javascript, HTTP/1.1
-
 
 ### RPC
 - vzorec RPC (*angl.* remote procedure call) 
@@ -75,13 +77,41 @@
 
 - zgodovinski razvoj
     - SunRPC, osnova za porazdeljene podatkovne sisteme, 1980
-    - CORBA (*angl.* common object request broker architecture) (1990)
+    - CORBA (*angl.* common object request broker architecture), 1990
     - Microsoft DCOM (*angl.* distributed component object model), 1996
-    - Java RMI, 1997
-    - SOAP (*angl.* simple object access protocol), običajno v navezi z XLM, 1998
+    - Java RMI (*angl. remote method invocation), 1997
+    - SOAP (*angl.* simple object access protocol), običajno v navezi z XML (*angl.* extended markup language), 1998
     - AJAX (*angl.* asynchronous javascript and XML), 1999
-    - REST, v navezi z JSON, 2000
-    - Google gRPC, 2015
+    - REST (*angl.* representational state transfer), v navezi z JSON (*angl.* javascript object notation), 2000
+    - Google gRPC (*.angl.* generic remote procedure call), 2015
+
+- paket `rpc` omogoča objavo in dostop do oddaljenih metod preko omrežja
+    - za serializacijo podatkov uporablja interni protokol jezika go - [gob](https://pkg.go.dev/encoding/gob)
+    - na strežniku prijavimo metode, ki so potem vidne kot storitev
+    - po prijavi so metode dostopne na daljavo
+    - na strežniku imamo lahko hkrati prijavljenih več metod različnih struktur
+
+- za oddaljeni dostop so na voljo samo metode, ki zadoščajo naslednjim kriterijem
+    - metoda je javna (*angl.* exported, se začne z veliko črko)
+    - metoda ima dva argumenta, drugi je kazalec
+    - metoda vrača podatkovni tip `error`
+    ```go
+    func (t *T) ImeMetode(argument T1, odgovor *T2) error
+    ```
+    - podatkovni tip T1 predstavlja argument, ki ga posreduje odjemalec; T2 predstavlja odgovore, ki jih strežnik posreduje odjemalcu
+    - vrnjena vrednost (`error`) se posreduje nazaj kot niz z opisom napake, ki se prevede v tip `error`
+    - strukture T, T1 in T2 so serializirane s paketom `encoding/gob`
+- [primer RPC](koda/rpc/rpc.go) ([strežnik](koda/rpc/streznik.go) in [odjemalec](koda/rpc/odjemalec.go))
+    - izmenjava poteka po protokolu TCP ali HTTP
+        - s protokolom HTTP dobimo podporo za overovitev: začetna izmenjava poteka po protokolu HTTP, naprej sledijo enaki paketi kot pri TCP
+    - strežnik
+        - prijavi metode za RPC
+        - vzpostavi vtičnico (`listener`), na kateri čaka na povezavo
+        - streže zahteve z `Accept` (TCP) ali `Serve` (HTTP)
+    - odjemalec
+        - se poveže na strežnik
+        - preko metode `client.Call` kliče metode na strežniku sinhrono (koraki 1 do 6)
+        - preko metode `client.Go` kliče metode na strežniku asinhrono (korak 7)
 
 ### gRPC
 - [gRPC](https://grpc.io/)
@@ -146,3 +176,45 @@
             ```go
             _, err := grpcClient.Create(contextCRUD, &lecturesCreate)
             ```
+
+### REST
+- REST (*angl.* representational state transfer) so priljubljena načela za oblikovanje elegantnih in raztegljivih programskih vmesnikov za protokole HTTP
+- programske vmesnike, zgrajene po teh načelih, imenujemo RESTful
+- glavna načela:
+    - obdelave nimajo stanja, zato vsaka zahteva vsebuje vse potrebne informacije za obdelavo
+    - odzivi so označeni ali jih je dovoljeno predpomniti ali ne; če je odziv predpomnjen, lahko odjemalec ob kasnejši enaki zahtevi uporabi odgovor v predpomnilniku 
+- za razliko od RPC in gRPC, ki omogočata dvosmerno komunikacijo, REST uporablja koncept zahteva-odgovor 
+- za kodiranje podatkov pred prenosom (*angl.* marshalling) uporablja tekstovni protokol XML ali JSON
+- primeren za enostavne programske vmesnike
+- omejitve
+    - za hitrejšo komunikacijo s strežnikom HTTP/1.1 ohranja povezavo s strežnikom odprto
+    - novega zahtevka ni mogoče izdati, dokler odjemalec ne prejme odgovora na prejšnjega
+    - zahteve je treba pošiljati zaporedno (zaporeden prenos slik na spletni strani) 
+    - izboljšave s HTTP/2 (binarni protokol, multipleksiranje povezav), HTTP/3 lasten protokol nad UDP
+- zahteva in odgovor
+    - lokacijo vira podamo z URL (*angl.* unified resource locator), na primer `http://localhost:9876/todos?task=predavanja`; vir je naveden za znakom `/`, neobvezen filter pa za znakom `?`
+    - odjemalec v glavi zahteve med drugim poda želeni format, na primer `application/json`
+    - strežnik odgovori s sporočilom
+        - v glavi so osnovne informacije: format zapisa, koda odgovora (200 - 299: uspešno, 300 - 499: neuspešno, 500 -: kode aplikacije na strežniku)
+        - v telesu se nahaja vsebina
+- najpogosteje uporabljane metode REST so POST (pisanje), GET (branje), PUT (posodabljanje) in DELETE (brisanje)
+    - določene metode lahko predpomnimo (GET)
+    - določene metode so idempotentne (GET, PUT, DELETE)
+    - tudi POST je lahko idempotenten - transakcija na strežniku: preverjanje obstoja ključa in vpisovanje
+- [primer HTTP REST](koda/rest/rest.go) ([strežnik](koda/rest/streznik.go) in [odjemalec](koda/rest/odjemalec.go))
+    - strežnik
+        - pripravimo shrambo
+        - ustvarimo multiplekser za izbiranje rokovalnika, ki bo izvedel zahtevo za izbrani vir
+            - dve opciji: prikaz osnovne spletne strani (`/`) ali klic metode (`/todos`, `/todos/`)
+            - rokovalnik mora vključevati metodo `ServeHTTP` z dvema argumentoma: prvi predstavlja odgovor, drugi pa zahtevo
+                ```go
+                func (tdh *TodosHandler) ServeHTTP(w http.ResponseWriter, r *http.Request) {
+                ```
+            - glede na tip zahteve se izvede ustrezna operacija na shrambi
+            - ob zaključeni operaciji strežnik vrne ustrezno pripravljen odgovor
+        - zaženemo strežnik
+    - odjemalec `curl`
+        - za primere glej komentar na vrhu datoteke [streznik.go](koda/rest/streznik/streznik.go)
+    - odjemalec v jeziku go:
+        - zahteve ustvarjamo s funkcijami iz paketa `net/http`: `Post`, `Get`, `NewRequest/Do`
+        - pri vsaki zahtevi pravilno nastavimo naslov storitve (URL)
