@@ -1,5 +1,7 @@
 # 3. Domača naloga: Razširjanje sporočil
 
+**Rok za oddajo: 17. 12. 2023**
+
 Na podlagi [razlage](../07-razsirjanje-sporocil/Razsirjanje-sporocil.md), želimo poustvariti protokol za razširjanje sporočil med procesi.
 
 Vaša naloga je napisati program v **go** za razširjanje sporočil med procesi in ga preizkusiti na **gruči Arnes**. Program naj preko ukazne vrstice prejme naslednje argumente (lahko tudi dodatne, če je potrebno):
