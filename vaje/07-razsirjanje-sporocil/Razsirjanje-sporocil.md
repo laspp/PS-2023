@@ -8,7 +8,7 @@ Pri nestrpnem razširjanju proces ob prvem prejemu sporočila to nemudoma posred
 
 ## Razširjanje z govoricami
 Število posredovanih sporočil lahko zmanjšamo, če vsak proces sporočilo posreduje le naključni podmnožici procesov. Ta pristop zaradi naključnosti ne zagotavlja, da bo sporočilo dobil vsak proces, vendar se lahko tej zahtevi približamo s poljubno verjetnostjo, ki je odvisna od parametrov protokola razširjanja. Ker ta način delovanja spominja na širjenje govoric, mu pravimo razširjanje z govoricami.
-![Nestrpno razširjanje](./razsiranje-govorice.png)
+![Razširjanje z govoricami](./razsiranje-govorice.png)
 
 ## Naloga
 
