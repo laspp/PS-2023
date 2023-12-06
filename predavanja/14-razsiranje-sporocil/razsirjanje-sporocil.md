@@ -46,6 +46,8 @@
     - ko prejemni proces sprejme sporočilo, ga funkcija za razširjanje posreduje aplikaciji prejemnika
     - odvisno od zahtev algoritma glede vrstnega reda dostave sporočil, lahko med sprejemom sporočila in posredovanjem aplikaciji nastane večja zakasnitev
 
+<img src="slike/dostava-sporocil.png" width="70%" />
+
 ### Modeli 
 
 #### Razširjanje FIFO

@@ -85,3 +85,5 @@
         - zapis je ob prejetju zahteve za vpis označen kot umazan
         - ko proces od naslednika dobi potrditev, zapis razume kot potrjen in ga označi kot čistega
         - pri bralni zahtevi bo proces vrnil zapis, če ni označen kot umazan; če je označen kot umazan, bo prosil rep za zadnjo potrjeno verzijo
+
+<img src="slike/replikacija-verizna-umazan-zapis.png" width="70%" />
