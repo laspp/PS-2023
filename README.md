@@ -46,5 +46,7 @@
     - vaje: [posredovanje sporočil](vaje/06-posredovanje-sporocil/Posredovanje-sporocil.md)
 
 - Teden 09:
-    - predavanja:
+    - predavanja: [merjenje časa: logične ure](predavanja/13-merjenje-casa/merjenje-casa.md), 
+    [razširjanje sporočil](predavanja/14-razsiranje-sporocil/razsirjanje-sporocil.md), 
+    [replikacija podatkov in verižna replikacija](predavanja/15-replikacija-1/replikacija-1.md)
     - vaje: [razširjanje sporočil](vaje/07-razsirjanje-sporocil/Razsirjanje-sporocil.md)

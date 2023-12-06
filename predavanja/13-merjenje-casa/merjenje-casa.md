@@ -90,3 +90,79 @@
     - v primeru večje razlike, $125 \text{ ms}\leq |\theta| < 1000 \text{ s}$ odjemalec svojo uro nastavi na novo vrednost
     - v primeru zelo velike razlike, $1000 \text{ s} \leq |\theta|$ zazna težavo in ne naredi ničesar
 - primer: [odjemalecNTP.go](koda/odjemalecNTP.go)
+
+
+## Logične ure
+
+- ure realnega časa ne znamo zanesljivo sinhronizirati med procesi na različnih vozliščih, zato z njo ne moremo zanesljivo razvrščati dogodkov
+- primer
+
+    - proces A pošlje sporočilo $m_1$ procesoma B in C
+    - proces B se odzove in polje sporočilo $m_2$ procesoma A in C
+    - zaradi zakasnitve sporočila $m_1$ pri prenosu od procesa A na C, je vrstni red na C nesmiseln
+    - lahko dodamo časovni žig, vendar se zaradi omejitev protokola NTP tudi v tem primeru lahko zgodi podobno - če ura na procesu A prehiteva uro na procesu B, ima lahko sporočilo $m_1$ novejši časovni žig kot sporočilo $m_2$
+
+<img src="slike/dogodki-vrstni-red.png" width="50%"/>
+
+- pri zaporednih procesih se vedno ena operacija izvede pred drugo, imamo vzročno povezava prej-potem (*angl.* happened-before)
+- dogodek $X$ se je zgodil pred dogodkom $Y$, če velja
+    - $X$ in $Y$ tečeta na istem procesu in se je $X$ zgodil pred $Y$
+    - dogodek $X$ je pošiljanje sporočila, dogodek $Y$ pa sprejemanje istega sporočila
+    - obstaja dogodek $Z$, za katerega velja, da se je dogodek $X$ zgodil pred dogodkom $Z$ in dogodek $Z$ pred dogodkom $Y$
+- potrebujemo algoritem, ki bo vzročno povezavo prej-potem zagotavljal v porazdeljenih sistemih
+- logične ure merijo čas v dogodkih
+    - ob dogodku algoritem določi logični časovni žig
+    - logična ura mora zagotavljati, da bosta imela v istem zaporednem procesu dva zaporedna dogodka različna logična časovna žiga (kasnejši višjo vrednost)
+
+### Lamportova ura
+- ideja: 
+    - po zajtrku pošljemo elektronsko pošto prijatelju, prijatelj jo prebere pred kosilom; zajtrkovali smo preden je prijatelj kosil
+    - pošiljanje sporočila je sinhronizacijska točka
+    - dogodki pred sinhronizacijsko točko so se morali zgoditi pred dogodki za sinhronizacijsko točko
+- algoritem
+    - vsak proces ima svoj števec dogodkov
+    - na začetku je števec dogodkov nastavljen na nič
+    - ob dogodku proces poveča števec dogodkov za 1
+    - ko proces pošlje sporočilo
+        - poveča števec dogodkov za 1 
+        - števec dogodkov pripne sporočilu
+    - ko proces sprejme sporočilo
+        - primerja števec dogodkov s števcem dogodkov, ki ga je dobil v sporočilu, 
+        - števec dogodkov nastavi na maksimum obeh vrednosti
+        - števec dogodkov poveča za 1
+    
+<img src="slike/Lamportova-ura.png" width="65%"/>
+
+- pravila zagotavljajo, da je za dogodek $X$, ki se je zgodil pred dogodkom $Y$, logični časovni žig $T_X$ manjši od logičnega časovnega žiga $T_Y$ (dogodek $D_{A2}$ se je zgodil pred $D_{B2}$)
+- dva nepovezana dogodka imata lahko isti logični časovni žig (dogodka $D_{A1}$ in $D_{C1}$)
+- strog vrstni red dogodkov lahko dobimo, če števcu pripnemo oznako procesa (za dogodka $D_{A1}$ in $D_{C1}$ bi potem imeli števca 1A in 1C)
+- vrstni red še vedno ne odraža vzročne povezave (dogodka $D_{B1}$ in $D_{C1}$)
+- Lamportova ura predpostavlja proces z zaustavitvijo, s shranjevanjem števcev na disk pa enostavno lahko podpremo tudi obnovljivi proces
+- z Lamportovo uro ne moremo določiti vzročne povezanosti vseh dogodkov ali ugotoviti, da sta dogodka sočasna
+
+
+### Vektorska ura
+- vektorska ura zagotavlja, da se je dogodek z nižjim časovnim žigom zgodil pred dogodkom z višjim časovnim žigom
+- vsak proces ima tabelo števcev dogodkov; števcev dogodkov je toliko, kolikor je sodelujočih procesov
+- tabela števcev dogodkov predstavlja logični časovni žig
+- algoritem
+    - na začetku so vsi števci dogodkov v tabeli nastavljeni na nič
+    - ob dogodku proces poveča svoj števec dogodkov v tabeli za 1
+    - ko proces pošlje sporočilo
+        - poveča svoj števec dogodkov v tabeli za 1
+        - pošlje sporočilo, ki mu pripne tabelo števcev dogodkov
+    - ko proces prejme sporočilo
+        - primerja tabelo števcev dogodkov s tabelo števcev dogodkov, ki jo je dobil v sporočilu
+        - vse števce dogodkov v tabeli nastavi na maksimum svoje vrednosti in istoležne vrednosti v prejeti tabeli
+        - svoj števec dogodkov v tabeli poveča za 1
+
+<img src="slike/vektorska-ura.png" width="65%"/>
+
+- logične časovne žige vektorske ure lahko delno uredimo
+    - dogodek $X$ z logičnim časovnim žigom $T_X$ se je zgodil pred dogodkom $Y$ z logičnima časovnim žigom $T_Y$, če 
+        - je vsak števec v $T_X$ manjši ali enak istoležnemu števcu v $T_Y$ in 
+        - je vsaj en števec v $T_X$ manjši od $T_Y$
+    - če se dogodek $X$ ni zgodil pred $Y$ in se tudi dogodek $Y$ ni zgodil pred $X$, potem vzamemo, da sta dogodka sočasna
+    - primer: dogodek $D_{A2}$ se je zgodil pred dogodkom $D_{B2}$, vrstnega reda dogodkov $D_{B1}$ in $D_{C1}$ pa ne moremo določiti - vzamemo, da sta se zgodila sočasno
+- problem vektorske ure so velike zahteve po pomnilniku in pasovni širini, boljše rešitve
+- paket za vektorske ure v jeziku go: [GoVector](https://pkg.go.dev/github.com/arcaneiceman/GoVector)
