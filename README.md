@@ -52,4 +52,4 @@
     - vaje: [razširjanje sporočil](vaje/07-razsirjanje-sporocil/Razsirjanje-sporocil.md)
 - Teden 10:
     - predavanja:
-    - vaje: [uporaba grpc](vaje/08-grpc/Grpc.md)
+    - vaje: [uporaba gRPC](vaje/08-grpc/Grpc.md)
