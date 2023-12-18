@@ -54,3 +54,7 @@
 - Teden 10:
     - predavanja: [replikacija podatkov: algoritem raft](predavanja/16-replikacija-2/replikacija-2.md)
     - vaje: [uporaba gRPC](vaje/08-grpc/Grpc.md)
+
+- Teden 11:
+    - predavanja:
+    - vaje: [verižna replikacija](vaje/09-verizna-replikacija/Verizna-replikacija.md)

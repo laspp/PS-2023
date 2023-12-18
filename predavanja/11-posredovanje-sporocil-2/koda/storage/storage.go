@@ -6,7 +6,10 @@
 
 package storage
 
-import "errors"
+import (
+	"errors"
+	"sync"
+)
 
 type Todo struct {
 	Task      string `json:"task"`
@@ -15,6 +18,7 @@ type Todo struct {
 
 type TodoStorage struct {
 	dict map[string]Todo
+	mu   sync.RWMutex
 }
 
 var ErrorNotFound = errors.New("not found")
@@ -22,16 +26,20 @@ var ErrorNotFound = errors.New("not found")
 func NewTodoStorage() *TodoStorage {
 	dict := make(map[string]Todo)
 	return &TodoStorage{
-		dict,
+		dict: dict,
 	}
 }
 
 func (tds *TodoStorage) Create(todo *Todo, ret *struct{}) error {
+	tds.mu.Lock()
+	defer tds.mu.Unlock()
 	tds.dict[todo.Task] = *todo
 	return nil
 }
 
 func (tds *TodoStorage) Read(todo *Todo, dict *map[string]Todo) error {
+	tds.mu.RLock()
+	defer tds.mu.RUnlock()
 	if todo.Task == "" {
 		for k, v := range tds.dict {
 			(*dict)[k] = v
@@ -47,6 +55,8 @@ func (tds *TodoStorage) Read(todo *Todo, dict *map[string]Todo) error {
 }
 
 func (tds *TodoStorage) Update(todo *Todo, ret *struct{}) error {
+	tds.mu.Lock()
+	defer tds.mu.Unlock()
 	if _, ok := tds.dict[todo.Task]; ok {
 		tds.dict[todo.Task] = *todo
 		return nil
@@ -55,6 +65,8 @@ func (tds *TodoStorage) Update(todo *Todo, ret *struct{}) error {
 }
 
 func (tds *TodoStorage) Delete(todo *Todo, ret *struct{}) error {
+	tds.mu.Lock()
+	defer tds.mu.Unlock()
 	if _, ok := tds.dict[todo.Task]; ok {
 		delete(tds.dict, todo.Task)
 		return nil
