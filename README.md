@@ -59,7 +59,7 @@
     - predavanja: [soglasje, skladnost in replikacija brez sporov](predavanja/17-replikacija-3/replikacija-3.md), [transakcije](predavanja/18-transakcije/transakcije.md)
     - vaje: [verižna replikacija](vaje/09-verizna-replikacija/Verizna-replikacija.md)
 
-- [Božično-novoletni izziv](Vaje/izziv/izziv.md)
+- [Božično-novoletni izziv](vaje/izziv/izziv.md)
 
 ### Grafični pospeševalniki
 
