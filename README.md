@@ -61,5 +61,9 @@
 
 - [Božično-novoletni izziv](vaje/izziv/izziv.md)
 
-### Grafični pospeševalniki
+### Grafične procesne enote
+
+- Teden 12:
+    - predavanja: [grafične procesne enote](predavanja/19-gpe/gpe.md) in [programski vmesnik CUDA](predavanja/20-cuda/cuda.md)
+
 
