@@ -34,7 +34,7 @@ int main(int argc, char **argv) {
 		numThreads = atoi(argv[2]);
 		vectorLength = atoi(argv[3]);
 	}
-	if (numBlocks == 0 || numThreads == 0 || vectorLength == 0) {
+	if (numBlocks <= 0 || numThreads <= 0 || vectorLength <= 0) {
 		printf("usage:\n\t%s <number of blocks> <number of threads> <vector length>\n", argv[0]);
 		exit(EXIT_FAILURE);
 	}

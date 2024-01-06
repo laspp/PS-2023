@@ -34,10 +34,14 @@ int main(int argc, char **argv) {
 		numThreads = atoi(argv[2]);
 		vectorLength = atoi(argv[3]);
 	}
-	if (numThreads == 0 || vectorLength == 0) {
+	if (numBlocks < 0 || numThreads <= 0 || vectorLength <= 0) {
 		printf("usage:\n\t%s <number of blocks> <number of threads> <vector length>\n", argv[0]);
 		exit(EXIT_FAILURE);
 	}
+
+	// določimo potrebno število blokov niti
+	if (numBlocks == 0)
+		numBlocks = (vectorLength - 1) / numThreads + 1;
 
 	// rezerviramo pomnilnik na gostitelju
 	float *hc = (float *)malloc(vectorLength * sizeof(float));
@@ -60,10 +64,6 @@ int main(int argc, char **argv) {
 	// prenesemo vektorja a in b iz gostitelja na napravo
 	check4error(cudaMemcpy(da, ha, vectorLength * sizeof(float), cudaMemcpyHostToDevice));
 	check4error(cudaMemcpy(db, hb, vectorLength * sizeof(float), cudaMemcpyHostToDevice));
-
-	// določimo potrebno število blokov
-	if (numBlocks == 0)
-		numBlocks = (vectorLength - 1) / numThreads + 1;
 
 	// zaženemo kodo na napravi
 	dim3 gridSize(numBlocks, 1, 1);
