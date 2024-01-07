@@ -1,5 +1,5 @@
 // računanje razlike vektorjev
-// 		argument podamo število blokov, število niti in dolžino vektorjev
+// 		argumenti: število blokov, število niti in dolžina vektorjev
 // 		elementi vektorjev so inicializirani naključno
 // slaba rešitev: podpora samo za en blok niti
 
