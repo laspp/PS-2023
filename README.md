@@ -55,6 +55,15 @@
     - predavanja: [replikacija podatkov: algoritem raft](predavanja/16-replikacija-2/replikacija-2.md)
     - vaje: [uporaba gRPC](vaje/08-grpc/Grpc.md)
 
-- Teden 11:
-    - predavanja:
+- Teden 11: 
+    - predavanja: [soglasje, skladnost in replikacija brez sporov](predavanja/17-replikacija-3/replikacija-3.md), [transakcije](predavanja/18-transakcije/transakcije.md)
     - vaje: [verižna replikacija](vaje/09-verizna-replikacija/Verizna-replikacija.md)
+
+- [Božično-novoletni izziv](vaje/izziv/izziv.md)
+
+### Grafične procesne enote
+
+- Teden 12:
+    - predavanja: [grafične procesne enote](predavanja/19-gpe/gpe.md) in [programski vmesnik CUDA](predavanja/20-cuda/cuda.md)
+
+
