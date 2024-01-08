@@ -49,7 +49,7 @@
     - predavanja: [merjenje časa: logične ure](predavanja/13-merjenje-casa/merjenje-casa.md), 
     [razširjanje sporočil](predavanja/14-razsiranje-sporocil/razsirjanje-sporocil.md), 
     [replikacija podatkov in verižna replikacija](predavanja/15-replikacija-1/replikacija-1.md)
-    - vaje: [razširjanje sporočil](vaje/07-razsirjanje-sporocil/Razsirjanje-sporocil.md)
+    - vaje: [razširjanje sporočil](vaje/07-razsirjanje-sporocil/Razsirjanje-sporocil.md) in [3. domača naloga](vaje/naloga-3/naloga-3.md)
 
 - Teden 10:
     - predavanja: [replikacija podatkov: algoritem raft](predavanja/16-replikacija-2/replikacija-2.md)
@@ -57,7 +57,7 @@
 
 - Teden 11: 
     - predavanja: [soglasje, skladnost in replikacija brez sporov](predavanja/17-replikacija-3/replikacija-3.md), [transakcije](predavanja/18-transakcije/transakcije.md)
-    - vaje: [verižna replikacija](vaje/09-verizna-replikacija/Verizna-replikacija.md)
+    - vaje: [verižna replikacija](vaje/09-verizna-replikacija/Verizna-replikacija.md) in [4. domača naloga](vaje/naloga-4/naloga-4.md)
 
 - [Božično-novoletni izziv](vaje/izziv/izziv.md)
 
@@ -65,5 +65,10 @@
 
 - Teden 12:
     - predavanja: [grafične procesne enote](predavanja/19-gpe/gpe.md) in [programski vmesnik CUDA](predavanja/20-cuda/cuda.md)
+    - vaje: praznik
+
+- Teden 13:
+    - predavanja:
+    - vaje: [grafične procesne enote - CUDA](vaje/10-CUDA/CUDA.md) in [5. domača naloga](vaje/naloga-5/naloga-5.md)
 
 

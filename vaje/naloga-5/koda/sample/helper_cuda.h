@@ -129,7 +129,7 @@ int _ConvertSMVer2Cores(int major, int minor)
   return nGpuArchCoresPerSM[index - 1].Cores;
 }
 
-inline const char *_ConvertSMVer2ArchName(int major, int minor)
+const char *_ConvertSMVer2ArchName(int major, int minor)
 {
   // Defines for GPU Architecture types (using the SM version to determine
   // the GPU Arch name)
