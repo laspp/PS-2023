@@ -7,6 +7,7 @@
 
 #include <stdio.h>
 #include "cuda.h"
+#include "helper_cuda.h"
 
 __global__ void pozdrav(void) {
 	printf("Hello from thread %d.%d!\n", blockIdx.x, threadIdx.x);
@@ -30,9 +31,10 @@ int main(int argc, char **argv) {
 	dim3 gridSize(numBlocks, 1, 1);
 	dim3 blockSize(numThreads, 1, 1);
 	pozdrav<<<gridSize, blockSize>>>();
+	checkCudaErrors(cudaGetLastError());
 	
 	// počakamo, da vse niti na napravi zaključijo
-	cudaDeviceSynchronize();
+	checkCudaErrors(cudaDeviceSynchronize());
  
 	return 0;
 

@@ -110,7 +110,7 @@
 ## Primer: računanje razlike vektorjev
 
 - $\mathbf{c} = \mathbf{a} - \mathbf{b}$
-- [vektorja-razlika-1.cu](koda/vektorja-razlika-1.cu)
+- [razlika-1.cu](koda/razlika-1.cu)
     - gostitelj
         - preberemo argumente iz ukazne vrstice
         - rezerviramo pomnilnik za vektorje na gostitelju (`ha`, `hb`, `hc`)
@@ -126,17 +126,17 @@
         - vsaka nit izračuna razliko istoležnih elementov v vektorjih $\mathbf{a}$ in $\mathbf{b}$
         - indeks niti določa kateri par elementov obdela posamezna nit
         - slaba rešitev: indeks lahko presega velikost tabele
-- [vektorja-razlika-2.cu](koda/vektorja-razlika-2.cu)
+- [razlika-2.cu](koda/razlika-2.cu)
     - preverimo velikost tabele
     - še vedno podpora za samo en blok niti
-- [vektorja-razlika-3.cu](koda/vektorja-razlika-3.cu)
+- [razlika-3.cu](koda/razlika-3.cu)
     - podpora za več blokov
     - napačen rezultat, če je elementov več kot niti
-- [vektorja-razlika-4.cu](koda/vektorja-razlika-4.cu)
+- [razlika-4.cu](koda/razlika-4.cu)
     - pravilna rešitev
     - uporabnik določa število blokov
-- [vektorja-razlika-5.cu](koda/vektorja-razlika-5.cu)
+- [razlika-5.cu](koda/razlika-5.cu)
     - pravilna rešitev
     - izračun potrebnega števila blokov
-- [vektorja-razlika-6.cu](koda/vektorja-razlika-6.cu)
+- [razlika-6.cu](koda/razlika-6.cu)
     - rešitev z enotnim pomnilnikom
