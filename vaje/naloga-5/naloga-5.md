@@ -15,6 +15,7 @@ Tipočno se pri odkrivanju robov v slikah poslužujemo Sobelovega operatorja, ki
 
 $G_x=-s(i-1,j-1)-2s(i,j-1)-s(i+1,j-1)+s(i-1,j+1)+2s(i,j+1)+s(i+1,j+1)$
 $G_y=s(i-1,j-1)+2s(i-1,j)+s(i-1,j+1)-s(i+1,j-1)-2s(i+1,j)-s(i+1,j+1)$
+
 $d(i,j)=\sqrt{G_x^2+G_y^2}$
 
 Pri računanju vrednosti izhodnih slikovnih točk moramo biti pozorni na:
