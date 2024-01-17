@@ -105,3 +105,10 @@
   - vaje:
     [grafične procesne enote - CUDA](vaje/10-CUDA/CUDA.md) in
     [5. domača naloga](vaje/naloga-5/naloga-5.md)
+
+- Teden 14:
+  - predavanja:
+    [računanje razdalje](predavanja/21-cuda-primeri/cuda-primeri.md#primer-razdalja-med-vektorjema),
+    [urejanje](predavanja/21-cuda-primeri/cuda-primeri.md#primer-bitonično-urejanje)
+  - vaje:
+    zagovori
