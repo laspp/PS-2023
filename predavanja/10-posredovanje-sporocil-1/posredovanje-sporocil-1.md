@@ -47,13 +47,13 @@ Porazdeljeni sistem je tisti, v katerem okvara računalnika, za katerega sploh n
     
     <img src="slike/prepustnost.png" width="30%"/>
         
-    - odpornost (*angl.* resilency)
-        - porazdeljeni sistem je odporen, če lahko nadaljuje z delom tudi ko pride do napake (odpoved vozlišča, napake na omrežju)
-        - ne glede na to, kako majhna je verjetnost za napako, večji kot je porazdeljeni sistem, večja je verjetnost, da bo do napake prišlo
-        - dostopnost sistema je delež časa, ko je sistem na voljo; običajno se meri s številom devetic (99.99 %)        
-    - vzdrževanje
-        - običajno je vzdrževanje dražje od same vzpostavitve sistema
-        - dobre prakse: pisanje testov enot, velika stopnja parametrizacije, DevOps (načrtovanje, izvedba, testiranje in nadzor delovanja)
+- odpornost (*angl.* resilency)
+    - porazdeljeni sistem je odporen, če lahko nadaljuje z delom tudi ko pride do napake (odpoved vozlišča, napake na omrežju)
+    - ne glede na to, kako majhna je verjetnost za napako, večji kot je porazdeljeni sistem, večja je verjetnost, da bo do napake prišlo
+    - dostopnost sistema je delež časa, ko je sistem na voljo; običajno se meri s številom devetic (99.99 %)        
+- vzdrževanje
+    - običajno je vzdrževanje dražje od same vzpostavitve sistema
+    - dobre prakse: pisanje testov enot, velika stopnja parametrizacije, DevOps (načrtovanje, izvedba, testiranje in nadzor delovanja)
     
 ### Zgradba porazdeljenega sistema
 - z vidika strojne opreme je porazdeljeni sistem skupina naprav, ki komunicira preko omrežja
