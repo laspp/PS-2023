@@ -1,7 +1,7 @@
 // bitonično urejanje tabele celih števil
 // 		argumenta: število niti v bloku in velikost tabele
 //		elementi tabele so inicializirani naključno
-// s sinhornizacijo niti v bloku se v največji možni meri izognemo globalni sinhornizaciji
+// s sinhronizacijo niti v bloku se v največji možni meri izognemo globalni sinhronizaciji
 // bitonicSort je zdaj funkcija na napravi, ki jo kličejo trije ščepci
 
 #include <stdio.h>
@@ -130,11 +130,9 @@ int main(int argc, char **argv) {
     // preverimo rešitev
     int okDevice = 1;
     int okHost = 1;
-    int previousDevice = ha[0];
-    int previousHost = a[0];
     for (int i = 1; i < tableLength; i++) {
-        okDevice &= (previousDevice <= ha[i]);
-        okHost &= (previousHost <= a[i]);
+        okDevice &= (ha[i-1] <= ha[i]);
+        okHost &= (a[i-1] <= a[i]);
     }
     printf("Device: %s (%lf ms)\n", okDevice ? "correct" : "wrong", timeDevice);
     printf("Host  : %s (%lf ms)\n", okHost ? "correct" : "wrong", timeHost);

@@ -107,11 +107,9 @@ int main(int argc, char **argv) {
     // preverimo rešitev
     int okDevice = 1;
     int okHost = 1;
-    int previousDevice = ha[0];
-    int previousHost = a[0];
     for (int i = 1; i < tableLength; i++) {
-        okDevice &= (previousDevice <= ha[i]);
-        okHost &= (previousHost <= a[i]);
+        okDevice &= (ha[i-1] <= ha[i]);
+        okHost &= (a[i-1] <= a[i]);
     }
     printf("Device: %s (%lf ms)\n", okDevice ? "correct" : "wrong", timeDevice);
     printf("Host  : %s (%lf ms)\n", okHost ? "correct" : "wrong", timeHost);
